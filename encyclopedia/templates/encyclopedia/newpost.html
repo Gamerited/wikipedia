@@ -1,0 +1,33 @@
+{% extends "encyclopedia/layout.html" %}
+{% load static %}
+{% block css %}
+        <link href="{% static 'encyclopedia/newpost.css' %}" rel="stylesheet">
+{% endblock %}
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+{% if taken == "yes" %}
+<div class="alert alert-danger" role="alert">
+    Sorry! The Title has already been taken please choose a new one and retry
+</div>
+{% endif %}
+<div>
+   <label for="story">Add New Post:</label>
+<br>
+<label for="title">Title of Post </label><br>
+<form method="POST">
+    {% csrf_token %}
+
+  <input type="text" id="title" name="title" value="Your title here"><br>
+  <br>
+     <label for="story">Content</label><br>
+
+    <textarea id="content" name="content" rows="5" cols="33">
+    </textarea><br><br>
+  <button type="submit" class="btn btn-primary">Create New Post </button>
+</form>
+</div>
+
+{% endblock %}
